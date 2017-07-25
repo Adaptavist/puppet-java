@@ -178,15 +178,8 @@ define java::oracle (
     default : {
       fail ( "unsupported platform ${$facts['kernel']}" ) }
   }
-
-  # set java architecture nomenclature
-  case $facts['os']['architecture'] {
-    'i386' : { $arch = 'i586' }
-    'x86_64' : { $arch = 'x64' }
-    default : {
-      fail ("unsupported platform ${$facts['os']['architecture']}")
-    }
-  }
+  # Will only support x64 architecture as facter fails to retrieve info about it
+  $arch = 'x64'
 
   # following are based on this example:
   # http://download.oracle.com/otn-pub/java/jdk/7u80-b15/jre-7u80-linux-i586.rpm
